@@ -1,0 +1,3 @@
+CREATE SCHEMA [beta]
+AUTHORIZATION [dbo]
+GO

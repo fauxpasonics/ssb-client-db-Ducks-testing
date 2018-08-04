@@ -1,0 +1,185 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE VIEW [ro].[vw_FactTicketSeat]
+AS 
+SELECT
+	fts.SaleDate,
+	fts.SaleTime,
+	fts.SaleDateTime,
+	fts.TicketingAccountId,
+	fts.ArenaCode,
+	fts.ArenaName,
+	fts.SeasonHeaderCode,
+	fts.SeasonHeaderName, 
+	fts.SeasonHeaderDesc, 
+	fts.SeasonHeaderClass, 
+	fts.SeasonHeaderYear, 
+	fts.SeasonHeaderIsActive, 
+	fts.SeasonName, 
+	fts.SeasonYear, 
+	fts.SeasonClass, 
+	fts.Sport, 
+	fts.EventHeaderName, 
+	fts.EventHeaderDesc, 
+	fts.EventHeaderDate, 
+	fts.EventHeaderTime, 
+	fts.EventHeaderDateTime, 
+	fts.EventHeaderOpenTime, 
+	fts.EventHeaderFinishTime, 
+	fts.EventSeasonNumber, 
+	fts.EventHeaderHomeNumber, 
+	fts.EventHeaderGameNumber, 
+	fts.EventHierarchyL1, 
+	fts.EventHierarchyL2, 
+	fts.EventHierarchyL3, 
+	fts.EventHierarchyL4, 
+	fts.EventHierarchyL5, 
+	fts.GameType,
+	fts.EventCode, 
+	fts.EventName, 
+	fts.EventDate, 
+	fts.EventTime, 
+	fts.EventDateTime, 
+	fts.EventClass,
+	fts.MajorCategoryTM,
+	fts.MinorCategoryTM,
+	fts.ItemCode,
+	fts.ItemName,
+	fts.ItemPlanOrEvent,
+	fts.PlanCode,
+	fts.PlanName,
+	fts.PlanClass,
+	fts.PlanFSE,
+	fts.PlanType,
+	fts.PlanEventCnt,
+	fts.PriceCode,
+	fts.PC1,
+	fts.PC2,
+	fts.PC3,
+	fts.PC4,
+	fts.PriceCodeDesc,
+	fts.PriceCodeGroup,
+	fts.SectionName,
+	fts.RowName,
+	fts.Seat,
+	fts.SeatLocationMapping,
+	fts.SeatLevelName,
+	fts.TicketClassCode,
+	fts.TicketClassName,
+	fts.TicketTypeCode,
+	fts.TicketTypeName,
+	fts.PlanTypeCode,
+	fts.PlanTypeName,
+	fts.SeatTypeCode,
+	fts.SeatTypeName,
+
+	fts.ClassName,
+	fts.DistStatus,
+
+	fts.SalesCode,
+	fts.SalesCodeName,
+	fts.PromoCode,
+	fts.PromoName,
+ 
+	fts.ManifestedPriceCode,
+	fts.ManifestedClassName,
+	fts.ManifestedSeatValue,
+ 		
+	fts.PostedPriceCode,
+	fts.PostedClassName,
+	fts.PostedSeatValue,
+
+	ISNULL(fts.HeldPriceCode, CASE WHEN fts.PostedClassName LIKE '%HELD%' OR fts.PostedClassName LIKE '%HOLD%' THEN fts.PostedPriceCode END) AS HeldPriceCode,
+	ISNULL(fts.HeldClassName, CASE WHEN fts.PostedClassName LIKE '%HELD%' OR fts.PostedClassName LIKE '%HOLD%' THEN fts.PostedClassName END) AS HeldClassName,
+	ISNULL(fts.HeldSeatValue, CASE WHEN fts.PostedClassName LIKE '%HELD%' OR fts.PostedClassName LIKE '%HOLD%' THEN fts.PostedSeatValue END) AS HeldSeatValue,
+
+	fts.IsSaleable,
+
+	fts.IsAvailable,
+	CAST(CASE WHEN fts.PostedClassName LIKE '%HELD%' OR fts.PostedClassName LIKE '%HOLD%' OR fts.IsHeld = 1 THEN 1 ELSE 0 END AS BIT) AS IsHeld,
+	fts.IsReserved,
+	fts.IsSold,
+	fts.IsHost,
+	fts.IsComp,
+
+	fts.TM_comp_code,
+	fts.TM_comp_name,
+
+	fts.IsPremium,
+	fts.IsSingleEvent,
+	fts.IsPlan,
+	fts.IsPartial,
+	fts.IsGroup,
+	fts.IsRenewal,
+	fts.IsBroker,
+
+	fts.TotalRevenue,
+	fts.PurchasePrice,
+	fts.PcTicketValue,
+	fts.Surcharge,
+
+	fts.PcTicket,
+	fts.PcTax,
+	fts.PcLicenseFee,
+	fts.PcOther1,
+	fts.PcOther2,
+	fts.IsAttended,
+	fts.ScanDateTime,
+	fts.ScanGate,
+	fts.QtySeat,
+	fts.QtySeatFSE,
+	fts.PaidAmount,
+	fts.OwedAmount,
+	fts.OrderNum,
+	fts.OrderLineItem,
+	fts.RetailTicketType,
+	fts.RetailQualifiers,
+	fts.IsResold,
+	fts.ResoldDimCustomerId,
+	fts.ResoldCustomerName,
+	fts.Resold_CRMContactId,
+	fts.ResoldDateTime,
+	fts.ResoldPurchasePrice,
+	fts.ResoldFees,
+	fts.ResoldTotalAmount,
+	fts.SalesSource,
+	fts.GroupSalesName,
+	fts.ArchticsAddUser,
+
+	fts.DimCustomerIdSalesRep, 
+	fts.DimCustomerId_TransSalesRep,
+
+	fts.SSID_event_id,
+	fts.SSID_section_id,
+	fts.SSID_row_id,
+	fts.SSID_seat,
+	fts.config_iscapacityeligible,
+
+	fts.IsPair,
+    
+	fts.CustomerName,
+	fts.CRMContactId,
+	fts.AccountRep,
+	sc.X,
+	sc.Y,
+	fts.DimEventId,
+	fts.DimSeasonId,
+	fts.ETL__SSID_TM_section_id,
+	fts.ETL__SSID_TM_row_id,
+	fts.ETL__SSID_TM_seat,
+	REPLACE(crm_p.CRM_Pattern, '[[CRM GUID]]', fts.CRMContactId) AS CRMUrl
+
+FROM dbo.FactTicketSeat_V2 fts (NOLOCK)
+LEFT OUTER JOIN ro.vw_SeatCoordinates sc
+	ON  fts.SectionName = sc.SectionName
+	AND fts.RowName = sc.RowName
+	AND fts.Seat = sc.Seat
+OUTER APPLY (
+		SELECT Value AS CRM_Pattern
+		FROM etl.ClientSetting
+		WHERE Setting = 'CRM Url Pattern'
+	) crm_p
+
+GO

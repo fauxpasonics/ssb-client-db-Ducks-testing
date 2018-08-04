@@ -1,0 +1,10 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE VIEW [ro].[vw_SKIDATA_UserProfileMap_PIVOT] AS (
+
+        SELECT *
+        FROM rpt.SKIDATA_UserProfileMap_PIVOT WITH (NOLOCK)
+        )
+GO

@@ -1,0 +1,42 @@
+CREATE TABLE [stg].[SkiData_Rewards]
+(
+[ETL_ID] [int] NOT NULL IDENTITY(1, 1),
+[ETL_CreatedDate] [datetime] NOT NULL CONSTRAINT [DF__SkiData_R__ETL_C__7E6372D6] DEFAULT (getdate()),
+[ETL_SourceFileName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RewardID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PortalID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[Title] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CostInPoints] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[NotForSale] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RequiredRoleID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[AdministratorUserID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RewardRedemptionAdministratorMessageTemplateID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RewardRedemptionMessageTemplateID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[AvailableStartDate] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[AvailableEndDate] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[QuantityAvailable] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[QuantityRemaining] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DefaultImage] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CssClass] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IsAuction] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[AuctionID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[Ordinal] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IsFeatured] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[Active] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DateCreated] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DateUpdated] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[UpdatedBy] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IsShowcased] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RewardCategoryID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RewardURL] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[BuyNowCost] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IsVoucher] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RedemptionCode] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[AwardPointActivityID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[AwardPointOverride] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PerUserCap] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[LoyaltyProductID] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+)
+GO
+ALTER TABLE [stg].[SkiData_Rewards] ADD CONSTRAINT [PK__SkiData___7EF6BFCDCDF507C7] PRIMARY KEY CLUSTERED  ([ETL_ID])
+GO

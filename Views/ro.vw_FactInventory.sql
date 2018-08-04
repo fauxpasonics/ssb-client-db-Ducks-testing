@@ -1,0 +1,8 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+
+
+CREATE VIEW [ro].[vw_FactInventory] AS ( SELECT * FROM dbo.FactInventory_V2 (NOLOCK) )
+GO
